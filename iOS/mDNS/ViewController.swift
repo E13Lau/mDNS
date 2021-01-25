@@ -31,6 +31,16 @@ class ViewController: UIViewController, UITableViewDataSource {
         }
         browser.startSearch()
         service.start()
+        
+        requestGoogle()
+    }
+    
+    func requestGoogle() {
+        let url = URL(string: "https://google.com")!
+        let task = URLSession.shared.dataTask(with: url) { (_, _, _) in
+            
+        }
+        task.resume()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,6 +91,7 @@ extension ServicePublish: NetServiceDelegate {
     }
     func netService(_ sender: NetService, didNotPublish errorDict: [String : NSNumber]) {
         print("didNotPublish")
+        print(errorDict)
     }
     func netService(_ sender: NetService, didAcceptConnectionWith inputStream: InputStream, outputStream: OutputStream) {
         print("didAcceptConnectionWith")
